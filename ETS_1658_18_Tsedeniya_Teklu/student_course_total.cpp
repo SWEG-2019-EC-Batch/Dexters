@@ -1,34 +1,80 @@
 
 #include <iostream>
 #include <iomanip>
+#include <string>
 using namespace std;
 
 /*
+================================================
 TASK 1: STUDENT COURSE TOTAL
+================================================
 
 INPUT:
-1. Assignment mark.
-2. Midterm mark.
-3. Final exam mark.
+- Assignment mark
+- Midterm mark
+- Final exam mark
 
 PROCESS:
-1. Read the assignment, midterm and final marks.
-2. Calculate 20% of the assignment mark.
-3. Calculate 30% of the midterm mark.
-4. Calculate 50% of the final exam mark.
-5. Add the three weighted marks.
-6. Determine Pass or Fail using the conditional operator.
+1. Read the three marks.
+2. Calculate assignment contribution (20%).
+3. Calculate midterm contribution (30%).
+4. Calculate final exam contribution (50%).
+5. Add all contributions to get the course total.
+6. Determine whether the student passes or fails.
+   Pass mark = 50.
 
 OUTPUT:
-1. Course total (one decimal place).
-2. Pass or Fail.
+- Course total
+- Pass or Fail
+
+FLOWCHART:
+
+       +-----------+
+       |   START   |
+       +-----------+
+             |
+             v
+   +---------------------+
+   | Enter three marks   |
+   +---------------------+
+             |
+             v
+   +---------------------+
+   | Calculate weighted  |
+   | course total        |
+   +---------------------+
+             |
+             v
+       +-------------+
+       | Total >= 50?|
+       +-------------+
+          /       \
+        Yes        No
+         |          |
+         v          v
+   +---------+  +---------+
+   |  PASS   |  |  FAIL   |
+   +---------+  +---------+
+         \        /
+          \      /
+             v
+   +---------------------+
+   | Display total and   |
+   | result              |
+   +---------------------+
+             |
+             v
+       +-----------+
+       |    END    |
+       +-----------+
+================================================
 */
 
 int main() {
-    double assignment, midterm, finalExam;
-    double total;
+    double assignment, midterm, finalExam, total;
+    string result;
 
-    // Input
+    // INPUT
     cout << "Enter assignment mark: ";
     cin >> assignment;
 
@@ -38,17 +84,18 @@ int main() {
     cout << "Enter final exam mark: ";
     cin >> finalExam;
 
-    // Process
+    // PROCESS
     total = (assignment * 0.20) +
             (midterm * 0.30) +
             (finalExam * 0.50);
 
-    string result = (total >= 50) ? "Pass" : "Fail";
+    result = (total >= 50) ? "Pass" : "Fail";
 
-    // Output
-    cout << fixed << setprecision(1);
-    cout << "Course Total: " << total << endl;
+    // OUTPUT
+    cout << fixed << setprecision(2);
+    cout << "\nCourse Total: " << total << endl;
     cout << "Result: " << result << endl;
 
     return 0;
 }
+
