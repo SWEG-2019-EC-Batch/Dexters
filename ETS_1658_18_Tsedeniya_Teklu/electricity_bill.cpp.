@@ -1,54 +1,104 @@
 
-/*
-TASK 2: ELECTRICITY BILL
-
-1. INPUT:
-   - Electricity units used in a month (units).
-
-2. OUTPUT:
-   - Energy charge.
-   - Fixed service charge.
-   - Total electricity bill.
-
-3. PROCESS:
-   1. Read the number of electricity units.
-   2. Calculate the energy charge:
-      - If units are 50 or less, multiply by 1.50.
-      - If units are above 50, charge 1.50
-        for the first 50 units and 2.00 for
-        every additional unit.
-   3. Set the service charge to 10 birr.
-   4. Calculate the total bill by adding
-      the energy charge and service charge.
-   5. Display all charges to two decimal places.
-*/
-
 #include <iostream>
 #include <iomanip>
 using namespace std;
 
+/*
+================================================
+TASK 2: ELECTRICITY BILL CALCULATION
+================================================
+
+INPUT:
+- Electricity units consumed.
+
+PROCESS:
+1. Read the number of electricity units.
+2. Check whether units are 50 or less.
+3. If units are 50 or less:
+   Energy charge = units * 1.50.
+4. Otherwise:
+   First 50 units cost 1.50 per unit.
+   Additional units cost 2.00 per unit.
+5. Add the service charge of 10 birr.
+6. Calculate the total bill.
+
+OUTPUT:
+- Energy charge
+- Service charge
+- Total electricity bill
+
+FLOWCHART:
+
+       +-----------+
+       |   START   |
+       +-----------+
+             |
+             v
+   +---------------------+
+   | Enter units used    |
+   +---------------------+
+             |
+             v
+       +-------------+
+       | Units <= 50?|
+       +-------------+
+          /       \
+        Yes        No
+         |          |
+         v          v
+ +---------------+ +-------------------+
+ | Units * 1.50  | | 50 * 1.50 +        |
+ |               | | (Units-50) * 2.00  |
+ +---------------+ +-------------------+
+          \          /
+           \        /
+             v
+   +---------------------+
+   | Add service charge  |
+   | of 10 birr          |
+   +---------------------+
+             |
+             v
+   +---------------------+
+   | Calculate total bill|
+   +---------------------+
+             |
+             v
+   +---------------------+
+   | Display bill        |
+   +---------------------+
+             |
+             v
+       +-----------+
+       |    END    |
+       +-----------+
+================================================
+*/
+
 int main() {
     int units;
-    double energyCharge, serviceCharge = 10.00;
+    double energyCharge;
+    double serviceCharge = 10.00;
     double totalBill;
 
-    // Input
-    cout << "Enter electricity units used: ";
+    // INPUT
+    cout << "Enter electricity units: ";
     cin >> units;
 
-    // Process
+    // PROCESS
     energyCharge = (units <= 50)
-                   ? units * 1.50
-                   : 50 * 1.50 + (units - 50) * 2.00;
+        ? units * 1.50
+        : (50 * 1.50) + ((units - 50) * 2.00);
 
     totalBill = energyCharge + serviceCharge;
 
-    // Output
+    // OUTPUT
     cout << fixed << setprecision(2);
 
-    cout << "Energy Charge: " << energyCharge << " birr" << endl;
+    cout << "\nEnergy Charge: " << energyCharge << " birr" << endl;
     cout << "Service Charge: " << serviceCharge << " birr" << endl;
     cout << "Total Bill: " << totalBill << " birr" << endl;
 
     return 0;
 }
+
